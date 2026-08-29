@@ -1,0 +1,25 @@
+{
+  "tagOwners": {
+    "tag:ada": ["autogroup:admin"]
+  },
+
+  "groups": {},
+
+  "acls": [
+    { "action": "accept", "src": ["*"], "dst": ["*:*"] }
+  ],
+
+  "grants": [
+    { "src": ["autogroup:member"], "dst": ["autogroup:member"], "ip": ["*"] }
+  ],
+
+  "ssh": [
+    {
+      "action": "accept",
+      "src": ["autogroup:member", "autogroup:tagged"],
+      "dst": ["autogroup:self", "autogroup:tagged", "tag:ada"],
+
+      "users": ["autogroup:nonroot", "root", "adaops", "gsant", "u0_a179"]
+    }
+  ]
+}
