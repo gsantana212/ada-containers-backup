@@ -1,0 +1,19 @@
+name: Verify backup integrity
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install zstd
+        run: sudo apt-get update && sudo apt-get install -y zstd
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: sha256 check
+        run: sha256sum -c ada-backup-latest.tar.zst.sha256
+      - name: tarball sanity
+        run: zstd -t ada-backup-latest.tar.zst
